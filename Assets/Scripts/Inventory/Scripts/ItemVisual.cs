@@ -10,15 +10,15 @@ public class ItemVisual : VisualElement
     public ItemVisual(InventoryDefinition item)
     {
         m_Item = item;
-        name = $"{item.FriendlyName}";
+        name = $"{item._itemName}";
 
-        style.height = m_Item.SlotDimension.Height * PlayerInventory.SlotDimension.Height;
-        style.width = m_Item.SlotDimension.Width * PlayerInventory.SlotDimension.Width;
+        style.height = m_Item._slotDimension.Height * PlayerInventory.SlotDimension.Height;
+        style.width = m_Item._slotDimension.Width * PlayerInventory.SlotDimension.Width;
         style.visibility = Visibility.Hidden;
     
         VisualElement icon = new VisualElement
         {
-            style = {   backgroundImage = m_Item.Icon.texture}
+            style = {   backgroundImage = m_Item._icon.texture}
         };
         Add(icon);
 

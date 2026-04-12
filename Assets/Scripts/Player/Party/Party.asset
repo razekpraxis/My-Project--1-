@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afa1d0faaa01d847843c4e95e871611, type: 3}
+  m_Name: Party
+  m_EditorClassIdentifier: Assembly-CSharp::Party
+  _activePartyMembers:
+  - {fileID: 11400000, guid: 43fc7bb160737ec449fb1648a9d9149e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  _allPartyMembers:
+  - {fileID: 11400000, guid: 43fc7bb160737ec449fb1648a9d9149e, type: 2}
+  _itemInventory:
+  - {fileID: 11400000, guid: 46ecc7385d000d845903c4db8f73e692, type: 2}
+  - {fileID: 11400000, guid: 46ecc7385d000d845903c4db8f73e692, type: 2}
+  - {fileID: 11400000, guid: 46ecc7385d000d845903c4db8f73e692, type: 2}
+  _equipmentInventory: []
+  _dragoonSpirits: []

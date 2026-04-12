@@ -68,7 +68,7 @@ namespace Assets.Scripts
 
                 if(!inventoryHasSpace)
                 {
-                    Debug.Log($"No space in inventory for item {loadedItem.Details.FriendlyName}");
+                    Debug.Log($"No space in inventory for item {loadedItem.Details._itemName}");
                     RemoveItemFromInventoryGrid(inventoryItemVisual);
                     continue;
                 }

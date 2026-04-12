@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e03bd8df3b81854099407c3067bc9a9, type: 3}
+  m_Name: Dart
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDef
+  _characterLevel: 35
+  _characterDLevel: 3
+  _characterMaxHitPoints: 695
+  _characterCurrentHitPoints: 294
+  _characterMaxMagicPoints: 75
+  _characterCurrentMagicPoints: 35
+  _characterCurrentExperiencePoints: 1303
+  _characterDragoonSpirit: {fileID: 11400000, guid: 64948de853ad96f45a3e545331b6d329, type: 2}
+  _hasDragoonSpirit: 0
+  bodyStats:
+    physicalAttack: 0
+    physicalDefense: 0
+    magicAttack: 0
+    magicDefense: 0
+    speed: 0
+  weaponStats:
+    physicalAttack: 0
+    physicalDefense: 0
+    magicAttack: 0
+    magicDefense: 0
+    speed: 0

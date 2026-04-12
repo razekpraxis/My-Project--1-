@@ -6,20 +6,15 @@ using System;
 [CreateAssetMenu(fileName = "NewInventoryItem", menuName = "Inventory/Item/Test")]
 public class InventoryDefinition : ScriptableObject
 {
-    public string ID = Guid.NewGuid().ToString();
-    public string FriendlyName;
-    public string Description;
-    public int SellPrice;
-    public Sprite Icon;
-    public Dimensions SlotDimension;
+    public string _itemID = Guid.NewGuid().ToString();
+    public string _itemName;
+    public string _itemDescription;
+    public Sprite _icon;
+    public Dimensions _slotDimension;
 }
 
 
 // create a new item called Gem that inherits from the item definition and adds new properties specific to the gem item
-
-
-
-
 
 
 

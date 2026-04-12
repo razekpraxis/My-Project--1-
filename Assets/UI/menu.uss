@@ -77,3 +77,4 @@ inventorygrid {
     width: 100%;
     -unity-background-scale-mode: scale-to-fit;
 }
+
