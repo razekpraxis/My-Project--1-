@@ -1168,7 +1168,29 @@ public partial class @GlobalControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c874c8dd-3253-46c4-80f3-c5a57fb2ee44"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb4c4757-ee30-4dad-8e9c-5c29bb68e5a5"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""297e1f4c-01ad-409f-93fb-570b355d6812"",
+                    ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

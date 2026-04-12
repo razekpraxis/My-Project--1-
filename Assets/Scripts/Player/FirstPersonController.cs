@@ -1,5 +1,9 @@
+using System.Collections.Generic;
+using Assets.Scripts;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 public class FirstPersonController : MonoBehaviour
@@ -14,6 +18,7 @@ public class FirstPersonController : MonoBehaviour
     public float jumpForce = 5f;
     // -- References --
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private PlayerInventory playerInventory;
 
     private CharacterController controller;
     private GlobalControls controls;
@@ -54,7 +59,21 @@ public class FirstPersonController : MonoBehaviour
                 verticalVelocity = jumpForce; // Set the vertical velocity to the jump force when the Jump action is performed and the player is grounded
             }
         };
-    }
+    controls.UI.InventoryToggle.performed += ctx => {
+        if (playerInventory.GetComponentInChildren<UIDocument>().enabled == false)  
+        {
+            playerInventory.GetComponentInChildren<UIDocument>().enabled = true; // Toggle the inventory UI off if it's currently enabled
+            UnityEngine.Cursor.lockState = CursorLockMode.None; // Lock the cursor to the center of the screen when closing the inventory
+            UnityEngine.Cursor.visible = true; 
+        }
+        else
+        {
+            playerInventory.GetComponentInChildren<UIDocument>().enabled = false; // Toggle the inventory UI on if it's currently disabled
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked; // Unlock the cursor when opening the inventory
+            UnityEngine.Cursor.visible = false; // Show the cursor when opening the inventory
+        }
+    };
+}
 
     private void OnEnable() // Called when the object becomes enabled and active
     {
@@ -69,8 +88,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Start() // Called before the first frame update
     {
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
-        Cursor.visible = false; // Hide the cursor
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
+        UnityEngine.Cursor.visible = false; // Hide the cursor
     }
 
 
@@ -83,7 +102,7 @@ public class FirstPersonController : MonoBehaviour
    private void HandleLook()
 {
     if (cameraTransform == null) return;
-
+    if (UnityEngine.Cursor.lockState != CursorLockMode.Locked) return; // Only allow looking around when the cursor is locked
     float mouseX = lookInput.x * lookSensitivity;
     float mouseY = lookInput.y * lookSensitivity;
 
@@ -98,7 +117,7 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMovement()
     {
         if(controller == null) return; // If the CharacterController reference is missing, exit the method to prevent errors
-
+        if (UnityEngine.Cursor.lockState != CursorLockMode.Locked) return; // Only allow movement when the cursor is locked
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y; // Calculate the movement direction based on input and player orientation
         controller.Move(move * speed * Time.deltaTime); // Move the player using the CharacterController
         if (controller.isGrounded) // Check if the player is grounded
@@ -112,7 +131,30 @@ public class FirstPersonController : MonoBehaviour
             controller.Move(gravityMove * Time.deltaTime); // Move the player based on gravity
     }
 
-    
+    void OnTriggerEnter(Collider other)
+    {
+        // check if inventory list is not empty before trying to access it to avoid null reference exceptions
+        if (playerInventory.StoredItems == null)
+        {
+            Debug.LogWarning("PlayerInventory component or StoredItems list is missing on the player. Cannot check for inventory items.");
+            return;
+        }
+        List<StoredItem> storedItems = playerInventory.StoredItems;//
+        
+        
+        if (other.CompareTag("Pickup"))
+        {
+            // debug to confirm hitbox is working and the correct tag is being detected
+            Debug.Log("Pickup detected: " + other.gameObject.name);
+            StoredItem item = new StoredItem
+            {
+                Details = other.gameObject.GetComponentInChildren<ItemContainer>()?.item, // Get the InventoryDefinition from the ItemContainer component on the pickup object
+                RootVisual = null // This will be set when the item is added to the inventory UI
+            };
+            storedItems.Add(item);    
+            other.gameObject.SetActive(false);
+        }
+    }
 
 
 }
