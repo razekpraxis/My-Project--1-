@@ -3,5 +3,8 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
-    public InventoryDefinition item = new InventoryDefinition();
+    public InventoryDefinition item;
+    private void Awake()
+    {     
+    }
 }

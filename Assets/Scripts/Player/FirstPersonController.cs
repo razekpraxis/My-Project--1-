@@ -62,13 +62,13 @@ public class FirstPersonController : MonoBehaviour
     controls.UI.InventoryToggle.performed += ctx => {
         if (playerInventory.GetComponentInChildren<UIDocument>().enabled == false)  
         {
-            playerInventory.GetComponentInChildren<UIDocument>().enabled = true; // Toggle the inventory UI off if it's currently enabled
+            playerInventory.GetComponentInChildren<UIDocument>().enabled = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None; // Lock the cursor to the center of the screen when closing the inventory
             UnityEngine.Cursor.visible = true; 
         }
         else
         {
-            playerInventory.GetComponentInChildren<UIDocument>().enabled = false; // Toggle the inventory UI on if it's currently disabled
+            playerInventory.GetComponentInChildren<UIDocument>().enabled = false; 
             UnityEngine.Cursor.lockState = CursorLockMode.Locked; // Unlock the cursor when opening the inventory
             UnityEngine.Cursor.visible = false; // Show the cursor when opening the inventory
         }
@@ -144,14 +144,8 @@ public class FirstPersonController : MonoBehaviour
         
         if (other.CompareTag("Pickup"))
         {
-            // debug to confirm hitbox is working and the correct tag is being detected
-            Debug.Log("Pickup detected: " + other.gameObject.name);
-            StoredItem item = new StoredItem
-            {
-                Details = other.gameObject.GetComponentInChildren<ItemContainer>()?.item, // Get the InventoryDefinition from the ItemContainer component on the pickup object
-                RootVisual = null // This will be set when the item is added to the inventory UI
-            };
-            storedItems.Add(item);    
+            playerInventory.AddItem(other.GetComponent<ItemContainer>().item); // Add the item from the ItemContainer component of the pickup to the player's inventory
+            Debug.Log("Pickup detected: " + other.GetComponent<ItemContainer>().item._itemName); // Log the name of the item being picked up for debugging purposes
             other.gameObject.SetActive(false);
         }
     }

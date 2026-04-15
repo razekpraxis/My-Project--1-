@@ -75,6 +75,8 @@ namespace Assets.Scripts
 
                 ConfigureInventoryItem(loadedItem, inventoryItemVisual);
             }
+
+
         }
         
         private void AddItemToInventoryGrid(VisualElement item) => m_InventoryGrid.Add(item);
@@ -102,6 +104,7 @@ namespace Assets.Scripts
 
             ConfigureSlotDimensions();
             m_IsInventoryReady = true;
+            GetComponentInChildren<UIDocument>().enabled = false; // Hide the inventory UI until it's needed
         }
 
         private void ConfigureSlotDimensions()
@@ -146,6 +149,28 @@ namespace Assets.Scripts
         {
             element.style.left = vector.x;
             element.style.top = vector.y;
+        }
+
+        public async void AddItem(InventoryDefinition itemToAdd)
+        {
+            StoredItem newItem = new StoredItem
+            {
+                Details = itemToAdd,
+                RootVisual = null
+            };
+            StoredItems.Add(newItem);
+            ItemVisual inventoryItemVisual = new ItemVisual(itemToAdd);
+            AddItemToInventoryGrid(inventoryItemVisual);
+            bool inventoryHasSpace = await GetPositionForItem(inventoryItemVisual);
+            if(!inventoryHasSpace)
+            {
+                Debug.Log($"No space in inventory for item {itemToAdd._itemName}");
+                RemoveItemFromInventoryGrid(inventoryItemVisual);
+                StoredItems.Remove(newItem);
+                return;
+            }
+            ConfigureInventoryItem(newItem, inventoryItemVisual);
+
         }
     }
 }

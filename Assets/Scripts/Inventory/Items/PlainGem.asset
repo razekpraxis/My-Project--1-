@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee1919eb8fc7744b9e74f1ab0de2ae1, type: 3}
   m_Name: PlainGem
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
-  ID: eff0019a-0925-48b6-b3c8-d41059c43ca0
-  FriendlyName: A Gem
-  Description: its a gem
-  SellPrice: 9999999
-  Icon: {fileID: 21300000, guid: 4cfc369fbc079e445b0b881c9caea40f, type: 3}
-  SlotDimension:
-    Width: 1
-    Height: 1
+  _itemID: 229cc58a-e628-42fc-ba6a-c5d28212df98
+  _itemName: 
+  _itemDescription: 
+  _icon: {fileID: 21300000, guid: 4cfc369fbc079e445b0b881c9caea40f, type: 3}
+  _slotDimension:
+    Width: 2
+    Height: 2
