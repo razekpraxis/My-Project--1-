@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewGemItem", menuName = "Inventory/Item/Gem")]
-public class GemItem : InventoryDefinition
+public class GemItem : ItemDefinition
 {
     public GemType Type;
 

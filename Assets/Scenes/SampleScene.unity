@@ -214,8 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.PlayerInventory
   StoredItems: []
   InventoryDimensions:
-    Width: 0
-    Height: 0
+    Width: 9
+    Height: 6
 --- !u!114 &48599043
 MonoBehaviour:
   m_ObjectHideFlags: 0

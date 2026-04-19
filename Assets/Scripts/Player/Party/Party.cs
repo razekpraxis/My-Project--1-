@@ -13,12 +13,12 @@ public class Party : ScriptableObject
 
     [Header("ItemInventory")]
     [Tooltip("The items in the party's inventory.")]
-    public List<InventoryDefinition> _itemInventory = new List<InventoryDefinition>();
+    public List<ItemDefinition> _itemInventory = new List<ItemDefinition>();
     public const int _maxItemInventorySize = 32;
 
     [Header("EquipmentInventory")]
     [Tooltip("The equipment in the party's inventory.")]
-    public List<InventoryDefinition> _equipmentInventory = new List<InventoryDefinition>();
+    public List<ItemDefinition> _equipmentInventory = new List<ItemDefinition>();
     public const int _maxEquipmentInventorySize = 255;
 
     [Header("Dragoon Spirits")]

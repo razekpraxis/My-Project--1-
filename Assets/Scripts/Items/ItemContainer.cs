@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
-    public InventoryDefinition item;
+    public ItemDefinition item;
     private void Awake()
-    {     
+    {
+        Debug.Log($"Item Container Awake: {item._itemName}");
+        Debug.Log("Item Container Awake: " + item._itemName);
     }
 }

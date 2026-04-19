@@ -4,7 +4,7 @@ using System;
 
 // create an item definition that can be used to create inventory items. 
 [CreateAssetMenu(fileName = "NewInventoryItem", menuName = "Inventory/Item/Test")]
-public class InventoryDefinition : ScriptableObject
+public class ItemDefinition : ScriptableObject
 {
     public string _itemID = Guid.NewGuid().ToString();
     public string _itemName;

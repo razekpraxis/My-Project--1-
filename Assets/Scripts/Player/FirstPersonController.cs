@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Assets.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-
+using Cysharp.Threading.Tasks;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class FirstPersonController : MonoBehaviour
     public float jumpForce = 5f;
     // -- References --
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private PlayerInventory playerInventory;
+
 
     private CharacterController controller;
     private GlobalControls controls;
@@ -58,20 +57,6 @@ public class FirstPersonController : MonoBehaviour
             {
                 verticalVelocity = jumpForce; // Set the vertical velocity to the jump force when the Jump action is performed and the player is grounded
             }
-        };
-    controls.UI.InventoryToggle.performed += ctx => {
-        if (playerInventory.GetComponentInChildren<UIDocument>().enabled == false)  
-        {
-            playerInventory.GetComponentInChildren<UIDocument>().enabled = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.None; // Lock the cursor to the center of the screen when closing the inventory
-            UnityEngine.Cursor.visible = true; 
-        }
-        else
-        {
-            playerInventory.GetComponentInChildren<UIDocument>().enabled = false; 
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked; // Unlock the cursor when opening the inventory
-            UnityEngine.Cursor.visible = false; // Show the cursor when opening the inventory
-        }
     };
 }
 
@@ -131,24 +116,6 @@ public class FirstPersonController : MonoBehaviour
             controller.Move(gravityMove * Time.deltaTime); // Move the player based on gravity
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        // check if inventory list is not empty before trying to access it to avoid null reference exceptions
-        if (playerInventory.StoredItems == null)
-        {
-            Debug.LogWarning("PlayerInventory component or StoredItems list is missing on the player. Cannot check for inventory items.");
-            return;
-        }
-        List<StoredItem> storedItems = playerInventory.StoredItems;//
-        
-        
-        if (other.CompareTag("Pickup"))
-        {
-            playerInventory.AddItem(other.GetComponent<ItemContainer>().item); // Add the item from the ItemContainer component of the pickup to the player's inventory
-            Debug.Log("Pickup detected: " + other.GetComponent<ItemContainer>().item._itemName); // Log the name of the item being picked up for debugging purposes
-            other.gameObject.SetActive(false);
-        }
-    }
 
 
 }
